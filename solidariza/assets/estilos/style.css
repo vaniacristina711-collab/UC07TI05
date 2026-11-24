@@ -1,0 +1,583 @@
+/* ==========================================================================
+   1. IMPORTAÇÃO DE FONTES E VARIÁVEIS GLOBAIS
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    /* Paleta Sustentável */
+    --cor-primaria: #2E7D32;       /* Verde Folha (Ação principal) */
+    --cor-primaria-hover: #1B5E20; /* Verde Escuro (Ao passar o mouse) */
+    --cor-fundo-card: #E8F5E9;     /* Verde Sálvia (Apoio) */
+    
+    /* Cores Neutras e Acessibilidade (IHC) */
+    --cor-texto: #212121;          /* Cinza Carvão para leitura confortável */
+    --cor-texto-claro: #757575;    /* Cinza médio para textos secundários */
+    --cor-fundo-site: #F8F9FA;     /* Branco Gelo */
+    --cor-branco: #FFFFFF;         /* Fundo de elementos em destaque */
+    
+    /* Estilos Visuais */
+    --borda-padrao: 1px solid #E0E0E0;
+    --sombra-leve: 0 4px 6px rgba(0,0,0,0.05);
+    --sombra-hover: 0 8px 15px rgba(0,0,0,0.1);
+    
+    /* Tipografia */
+    --fonte-principal: 'Inter', sans-serif;
+}
+
+/* ==========================================================================
+   2. RESET CSS (Padronização entre navegadores)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Garante que padding não aumente o tamanho da caixa */
+}
+/* Adicione esta regra logo abaixo do Reset CSS (Seção 2) */
+html {
+    /* Faz a tela deslizar suavemente ao clicar em links de âncora (#campanhas) */
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo-site);
+    color: var(--cor-texto);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: var(--cor-texto);
+    transition: color 0.3s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+/* ==========================================================================
+   3. CABEÇALHO E NAVEGAÇÃO (NAVBAR) - CONSOLIDADO
+   ========================================================================== */
+.cabecalho-principal {
+    background-color: var(--cor-branco);
+    border-bottom: var(--borda-padrao);
+    box-shadow: var(--sombra-leve);
+    position: sticky; 
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;            
+    max-width: 1200px;              
+    margin: 0 auto;                 
+    padding: 15px 20px;
+}
+
+/* --- LOGO --- */
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    color: var(--cor-primaria);
+    font-weight: 700;
+}
+
+/* --- MENU LINKS (DESKTOP) --- */
+.menu-links {
+    display: flex;       /* Garante que o menu apareça no Desktop */
+    align-items: center;
+    gap: 30px;
+}
+
+.menu-links a:hover {
+    color: var(--cor-primaria);
+}
+
+
+/* ==========================================================================
+   4. BOTÕES (Componentes Reutilizáveis)
+   ========================================================================== */
+.btn-sustentavel {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco) !important;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-sustentavel:hover {
+    background-color: var(--cor-primaria-hover);
+    transform: translateY(-2px); /* Efeito sutil de levantar ao passar o mouse */
+}
+
+.btn-secundario {
+    background-color: transparent;
+    color: var(--cor-primaria);
+    padding: 10px 20px;
+    border: 2px solid var(--cor-primaria);
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-secundario:hover {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+}
+
+.btn-grande {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   5. PÁGINA INICIAL: HERO SECTION
+   ========================================================================== */
+.conteudo-principal {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    margin-bottom: 80px;
+    padding: 40px 0;
+}
+
+.hero-textos {
+    flex: 1; /* Ocupa 50% do espaço */
+}
+
+.hero-textos h2 {
+    font-size: 2.8rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--cor-texto);
+}
+
+.hero-textos p {
+    font-size: 1.1rem;
+    color: var(--cor-texto-claro);
+    margin-bottom: 30px;
+}
+
+.hero-botoes {
+    display: flex;
+    gap: 15px;
+}
+
+.hero-imagem {
+    flex: 1; /* Ocupa os outros 50% do espaço */
+    display: flex;
+    justify-content: center;
+    
+}
+
+.hero-imagem img {
+    max-width: 100%;
+    height: auto;
+    /* Adiciona uma animação suave de flutuação para dar vida à página */
+    animation: flutuar 3s ease-in-out infinite; 
+    border-radius: 16px;
+}
+
+@keyframes flutuar {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+}
+
+/* ==========================================================================
+   6. PÁGINA INICIAL: COMO FUNCIONA (CARDS)
+   ========================================================================== */
+.como-funciona {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.como-funciona h3 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: var(--cor-primaria);
+}
+
+.cards-passos {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.card {
+    background-color: var(--cor-branco);
+    border: var(--borda-padrao);
+    border-radius: 12px; /* Bordas arredondadas amigáveis */
+    padding: 30px;
+    flex: 1;
+    box-shadow: var(--sombra-leve);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--sombra-hover);
+    transform: translateY(-5px); /* Efeito de elevação */
+    border-color: var(--cor-primaria); /* Destaque verde na borda */
+}
+
+.card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--cor-primaria);
+}
+
+.card p {
+    color: var(--cor-texto-claro);
+    font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   7. RODAPÉ
+   ========================================================================== */
+.rodape-principal {
+    background-color: var(--cor-texto);
+    color: var(--cor-branco);
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 60px;
+}
+
+.rodape-conteudo p {
+    margin-bottom: 5px;
+    color: #BDBDBD;
+}
+
+/* ==========================================================================
+   8. RESPONSIVIDADE (Design Adaptável para Celulares)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column-reverse; /* Imagem fica em cima, texto embaixo */
+        text-align: center;
+    }
+    
+    .hero-botoes {
+        justify-content: center;
+    }
+    
+    .cards-passos {
+        flex-direction: column; /* Cards empilhados um embaixo do outro */
+    }
+    
+    
+}
+
+
+/* ==========================================================================
+   9. MENU HAMBÚRGUER E RESPONSIVIDADE (MOBILE)
+   ========================================================================== */
+/* Botão do menu fica oculto no Desktop */
+.menu-toggle {
+    display: none; 
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.menu-toggle .linha {
+    width: 100%;
+    height: 3px;
+    background-color: var(--cor-primaria);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Regras aplicadas APENAS em telas menores que 768px (Celulares) */
+@media (max-width: 768px) {
+    
+    .menu-toggle {
+        display: flex; /* Mostra o botão hambúrguer */
+    }
+
+    /* Sobrescreve o .menu-links do desktop para esconder na tela de celular */
+    .menu-links {
+        position: absolute;
+        top: 80px; /* Altura do cabeçalho */
+        left: 0;
+        width: 100%;
+        background-color: var(--cor-branco);
+        flex-direction: column;
+        padding: 30px 0;
+        box-shadow: var(--sombra-hover);
+        display:flex;
+        /* Esconde o menu */
+        transform: translateY(-150%);
+        opacity: 0;
+        pointer-events: none; /* Impede que o menu invisível bloqueie cliques */
+        transition: all 0.3s ease;
+    }
+
+    /* Classe ativada pelo JavaScript para mostrar o menu */
+    .menu-links.ativo {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    /* Animação do botão virando um "X" */
+    .menu-toggle.ativo .linha:nth-child(1) {
+        transform: translateY(9.5px) rotate(45deg);
+    }
+    .menu-toggle.ativo .linha:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.ativo .linha:nth-child(3) {
+        transform: translateY(-9.5px) rotate(-45deg);
+    }
+}
+/* ==========================================================================
+   10. VITRINE DE CAMPANHAS (CSS GRID)
+   ========================================================================== */
+.vitrine-campanhas {
+    padding: 60px 0;
+    /* Compensa a altura do menu fixo (sticky) para o título não ficar escondido ao rolar */
+    scroll-margin-top: 80px; 
+}
+
+.cabecalho-secao {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.cabecalho-secao h3 {
+    font-size: 2rem;
+    color: var(--cor-primaria);
+    margin-bottom: 10px;
+}
+
+.cabecalho-secao p {
+    color: var(--cor-texto-claro);
+    font-size: 1.05rem;
+}
+
+/* CSS Grid responsivo automático: cria quantas colunas couberem com no mínimo 300px */
+.grid-campanhas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card-campanha {
+    background-color: var(--cor-branco);
+    border: var(--borda-padrao);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: var(--sombra-leve);
+    
+    /* Flexbox em coluna para empurrar o botão sempre para o fundo do card */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-campanha:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-hover);
+    border-color: var(--cor-primaria);
+}
+
+/* Badge (etiqueta) de Status da Campanha */
+.badge-status {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
+    border-radius: 20px; /* Formato de pílula */
+    margin-bottom: 15px;
+}
+
+.badge-status.ativa {
+    background-color: var(--cor-fundo-card); /* Verde Sálvia */
+    color: var(--cor-primaria);              /* Verde Folha */
+}
+
+.card-campanha h4 {
+    font-size: 1.3rem;
+    color: var(--cor-texto);
+    margin-bottom: 12px;
+}
+
+.descricao-campanha {
+    color: var(--cor-texto-claro);
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+    /* flex-grow: 1 faz o texto ocupar o espaço disponível, alinhando os botões de todos os cards */
+    flex-grow: 1; 
+}
+
+.rodape-card {
+    width: 100%;
+}
+
+/* Modificador para o botão ocupar 100% da largura do card */
+.btn-bloco {
+    display: block;
+    width: 100%;
+    text-align: center;
+    border: none;
+}
+/* ==========================================================================
+   11. FORMULÁRIOS (LOGIN E CADASTRO)
+   ========================================================================== */
+.container-form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 50px 20px;
+    min-height: 75vh; /* Garante que o rodapé fique empurrado para baixo */
+}
+
+.card-form {
+    background-color: var(--cor-branco);
+    border: var(--borda-padrao);
+    border-radius: 12px;
+    padding: 40px;
+    width: 100%;
+    max-width: 650px; /* Largura ideal para o formulário de cadastro */
+    box-shadow: var(--sombra-leve);
+}
+
+/* Modificador para deixar a caixa de Login mais compacta */
+.card-form-pequeno {
+    max-width: 450px;
+}
+
+.cabecalho-form {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cabecalho-form h2 {
+    color: var(--cor-primaria);
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.cabecalho-form p {
+    color: var(--cor-texto-claro);
+    font-size: 0.95rem;
+}
+
+/* Estilização do Fieldset e Legend */
+.grupo-secao {
+    border: none;
+    border-top: var(--borda-padrao);
+    padding-top: 20px;
+    margin-bottom: 25px;
+}
+
+.grupo-secao legend {
+    font-weight: 700;
+    color: var(--cor-primaria);
+    font-size: 1rem;
+    padding-right: 12px;
+}
+
+/* Container de cada par Label + Input */
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+    width: 100%;
+}
+
+.grupo-input label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--cor-texto);
+}
+
+.grupo-input input {
+    padding: 12px 14px;
+    border: var(--borda-padrao);
+    border-radius: 6px;
+    font-family: var(--fonte-principal);
+    font-size: 1rem;
+    color: var(--cor-texto);
+    background-color: var(--cor-branco);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Feedback visual de foco (IHC / Acessibilidade) */
+.grupo-input input:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 3px var(--cor-fundo-card); /* Halo verde sálvia suave */
+}
+
+.texto-ajuda {
+    font-size: 0.8rem;
+    color: var(--cor-texto-claro);
+    margin-top: 5px;
+}
+
+/* Grid de 2 colunas para campos lado a lado (ex: Cidade e UF) */
+.linha-dupla {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.rodape-form {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: var(--borda-padrao);
+    font-size: 0.95rem;
+    color: var(--cor-texto-claro);
+}
+
+.rodape-form a {
+    color: var(--cor-primaria);
+    font-weight: 600;
+}
+
+.rodape-form a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade dos formulários no celular */
+@media (max-width: 768px) {
+    .card-form {
+        padding: 25px 20px;
+    }
+
+    .linha-dupla {
+        grid-template-columns: 1fr; /* Empilha os campos em 1 coluna no mobile */
+        gap: 0;
+    }
+}
